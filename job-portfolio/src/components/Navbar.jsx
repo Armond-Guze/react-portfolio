@@ -4,6 +4,7 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { MdCancel } from "react-icons/md";
 import { FaLinkedin, FaGithubSquare, FaBook  } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { Link } from 'react-scroll'
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleclick = () => setNav(!nav);
@@ -17,6 +18,9 @@ const Navbar = () => {
 
       <ul className="hidden md:flex">
         <li>Home</li>
+        <Link to='about' smooth={true} duration={500}>
+            About
+          </Link>
         <li>About</li>
         <li>Skills</li>
         <li>Work</li>
