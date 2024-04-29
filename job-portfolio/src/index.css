@@ -22,6 +22,7 @@
 }
 
 .content-div:hover {
+  cursor: pointer;
   background-image: linear-gradient(
     to right,
     rgba(112, 157, 255, 0.8),
