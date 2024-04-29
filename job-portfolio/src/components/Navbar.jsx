@@ -35,7 +35,7 @@ const Navbar = () => {
       </ul>
 
       {/* Hamburger */}
-      <div onClick={handleclick} className="md:hidden z-10">
+      <div onClick={handleclick} className="md:hidden z-10 cursor-pointer">
         {!nav ? <TfiMenuAlt /> : <MdCancel />}
       </div>
 
