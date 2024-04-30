@@ -21,14 +21,13 @@ const Home = () => {
         </p>
         <div>
           <Link to="work" smooth={true} duration={500}>
-            Home
+            <button className="text-white group border-2 px-6 py-3 my-3 flex items-center hover:bg-pink-600 hover:border-pink-700">
+              View Work
+              <span className="group-hover:rotate-90 duration-300">
+                <FaArrowRight className="ml-3 " />
+              </span>
+            </button>
           </Link>
-          <button className="text-white group border-2 px-6 py-3 my-3 flex items-center hover:bg-pink-600 hover:border-pink-700">
-            View Work
-            <span className="group-hover:rotate-90 duration-300">
-              <FaArrowRight className="ml-3 " />
-            </span>
-          </button>
         </div>
       </div>
     </div>
