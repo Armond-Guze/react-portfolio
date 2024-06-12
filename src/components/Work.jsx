@@ -17,10 +17,10 @@ const Work = () => {
           {/* grid item */}
           <div
             style={{ backgroundImage: `url(${Frontend})` }}
-            className="shadow-lg shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div"
+            className="shadow-lg cursor-none shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div"
           >
             {/* hover effects */}
-            <div className="group-hover-100">
+            <div className="group-hover-100 cursor-default">
               <div>
                 <span className="text-2xl m-4 font-bold text-white tracking-wider">
                   Frontend, Ecommerce
@@ -43,7 +43,7 @@ const Work = () => {
             className="shadow-lg shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div"
           >
             {/* hover effects */}
-            <div className="group-hover-100">
+            <div className="group-hover-100 cursor-default">
               <div>
                 <span className="text-2xl m-4 font-bold text-white tracking-wider">
                   React Js App
@@ -67,12 +67,12 @@ const Work = () => {
             className="shadow-lg shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div"
           >
             {/* hover effects */}
-            <div className="group-hover-100">
+            <div className="group-hover-100 cursor-default">
               <div>
                 <span className="text-3xl m-4 font-bold text-white tracking-wider">
                   Trip Junkie
                 </span>
-                <div className="pt-3 text-center">
+                <div className="pt-3 text-center cursor-default">
                   <button className="text-center rounded-lg bg-white px-4 py-3 m-2 text-gray-700 font-bold">
                     <a href="https://trip-junkie-f71816465bac.herokuapp.com/">
                       Demo
