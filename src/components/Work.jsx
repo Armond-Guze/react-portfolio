@@ -46,14 +46,14 @@ const Work = () => {
             <div className="group-hover-100 cursor-default">
               <div>
                 <span className="text-2xl m-4 font-bold text-white tracking-wider">
-                  React Js App
+                  Carhub
                 </span>
                 <div className="pt-3 text-center">
-                  <a href="/"></a>
+                  <a href="https://hub4cars.netlify.app/"></a>
                   <button className="text-center rounded-lg bg-white px-4 py-3 m-2 text-gray-700 font-bold">
                     Demo
                   </button>
-                  <a href="/"></a>
+                  <a href="https://github.com/Armond-Guze/carhub"></a>
                   <button className="text-center rounded-lg bg-white px-4 py-3 m-2 text-gray-700 font-bold">
                     Code
                   </button>
@@ -65,6 +65,7 @@ const Work = () => {
           <div
             style={{ backgroundImage: `url(${TripJunkie})` }}
             className="shadow-lg shadow-[#040c16] group container rounded-md flex justify-center items-center mx-auto content-div"
+            // dsf
           >
             {/* hover effects */}
             <div className="group-hover-100 cursor-default">
@@ -78,6 +79,7 @@ const Work = () => {
                       Demo
                     </a>
                   </button>
+                  
                   <button className="text-center rounded-lg bg-white px-4 py-3 m-2 text-gray-700 font-bold">
                     <a href="https://github.com/Armond-Guze/trip-junkie">
                       Code
