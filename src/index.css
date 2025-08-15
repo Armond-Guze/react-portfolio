@@ -29,3 +29,72 @@
     hsla(242, 74%, 61%, 0.8)   
   ) !important;
 }
+
+/* Enhanced styling utilities */
+.section-gradient {
+  /* darker, subtle color accents */
+  background: #080c11;
+  background-image: radial-gradient(at 0% 0%, rgba(88,91,180,0.18) 0, transparent 58%),
+    radial-gradient(at 100% 0%, rgba(180,55,118,0.18) 0, transparent 58%),
+    linear-gradient(to bottom right,#080c11,#0d1118 55%,#121721);
+}
+
+.section-alt-gradient {
+  background-image: radial-gradient(at 30% 10%, rgba(180,55,118,0.17) 0, transparent 52%),
+    radial-gradient(at 70% 90%, rgba(88,91,180,0.17) 0, transparent 52%),
+    linear-gradient(135deg,#070b11,#101726 60%,#171d29);
+}
+
+/* Animated subtle gradient (optional) */
+@keyframes slow-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-bg {
+  background: linear-gradient(-45deg,#070b11,#141b24,#1d2540,#421634);
+  background-size: 400% 400%;
+  animation: slow-pan 32s ease infinite;
+}
+
+/* Navbar link underline effect */
+.nav-link { position:relative; padding:0.5rem 1rem; transition:color .3s ease; display:inline-block; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  bottom: 4px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(to right,#ec4899,#6366f1);
+  border-radius: 2px;
+  transition: width .35s ease;
+}
+.nav-link:hover::after { width: calc(100% - 2rem); }
+.nav-link-active { color:#f472b6; }
+.nav-link-active::after { width: calc(100% - 2rem); }
+
+/* Inputs */
+.input-field { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:0.5rem; padding:0.5rem 1rem; color:#e5e7eb; width:100%; transition:.25s; }
+.input-field::placeholder { color:#9ca3af; }
+.input-field:focus { outline:none; box-shadow:0 0 0 2px #ec489966; border-color:#ec4899; }
+textarea.input-field { resize:none; }
+
+/* Gradient button */
+.btn-gradient { position:relative; display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.5rem; font-weight:600; border-radius:0.5rem; overflow:hidden; transition:filter .3s ease, transform .3s ease; color:#fff; }
+.btn-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,#ec4899,#6366f1,#ec4899);
+  background-size: 200% 100%;
+  animation: gradient-move 6s linear infinite;
+  opacity: .85;
+}
+.btn-gradient span { position:relative; z-index:10; }
+.btn-gradient:hover::before { opacity: 1; }
+@keyframes gradient-move { 0% { background-position: 0 50%; } 100% { background-position: 200% 50%; } }
+
+/* Card glass effect */
+.glass { background:rgba(255,255,255,0.05); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.1); box-shadow:0 10px 25px -5px rgba(0,0,0,0.4); }
+

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../assets/ag logo.png";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { MdCancel } from "react-icons/md";
@@ -7,116 +7,81 @@ import { MdEmail } from "react-icons/md";
 import { Link } from "react-scroll";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+
   const handleclick = () => setNav(!nav);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+      // Determine active section heuristically
+      const sections = ["home","about","skills","work","contact"]; 
+      for (let id of sections) {
+        const el = document.querySelector(`div[name='${id}']`);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.35 && rect.bottom >= window.innerHeight * 0.35) {
+              setActive(id);
+              break;
+            }
+        }
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   return (
-    <div className="fixed w-full h-[80px] flex justify-between items-center font-bold px-4 bg-[#0a192f] text-gray-300">
-      <div>
-        <img src={Logo} alt="logo Image" style={{ width: "400px" }} />
+    <div className={`fixed w-full h-[70px] flex justify-between items-center font-semibold px-4 md:px-8 z-50 transition-all duration-500 ${scrolled ? 'bg-[#0a192fcc] backdrop-blur-md shadow-lg' : 'bg-transparent'} text-gray-200`}>      
+      <div className="flex items-center">
+        <img src={Logo} alt="logo" className="w-48 sm:w-56 lg:w-64 -ml-4 select-none pointer-events-none drop-shadow-lg" />
       </div>
 
       {/* menu */}
 
-      <ul className="hidden md:flex">
-        <li>
-          <Link to="home" smooth={true} duration={500}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="about" smooth={true} duration={500}>
-            About
-          </Link>
-        </li>
-        <li>
-          <Link to="skills" smooth={true} duration={500}>
-            Skills
-          </Link>
-        </li>
-        <li>
-          <Link to="work" smooth={true} duration={500}>
-            Work
-          </Link>
-        </li>
-        <li>
-          <Link to="contact" smooth={true} duration={500}>
-            Contact
-          </Link>
-        </li>
+      <ul className="hidden md:flex space-x-2 lg:space-x-4">
+        {['home','about','skills','work','contact'].map(item => (
+          <li key={item}>
+            <Link to={item} smooth={true} duration={500} onClick={() => setActive(item)} className={`nav-link capitalize ${active===item? 'nav-link-active':''}`}>{item}</Link>
+          </li>
+        ))}
       </ul>
 
       {/* Hamburger */}
-      <div onClick={handleclick} className="md:hidden z-10 cursor-pointer">
+      <div onClick={handleclick} className="md:hidden z-50 cursor-pointer text-2xl">
         {!nav ? <TfiMenuAlt /> : <MdCancel />}
       </div>
 
       {/* mobile menu */}
-      <ul
-        className={
-          !nav
-            ? "hidden"
-            : "absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center"
-        }
-      >
-        <li className="py-6 text-4xl">
-          <Link onClick={handleclick} to="home" smooth={true} duration={500}>
-            Home
-          </Link>
-        </li>
-        <li className="py-6 text-4xl">
-          <Link onClick={handleclick} to="about" smooth={true} duration={500}>
-            About
-          </Link>
-        </li>
-        <li className="py-6 text-4xl">
-          <Link onClick={handleclick} to="skills" smooth={true} duration={500}>
-            Skills
-          </Link>
-        </li>
-        <li className="py-6 text-4xl">
-          <Link onClick={handleclick} to="work" smooth={true} duration={500}>
-            Work
-          </Link>
-        </li>
-        <li className="py-6 text-4xl">
-          <Link onClick={handleclick} to="contact" smooth={true} duration={500}>
-            Contact
-          </Link>
-        </li>
+      <ul className={`${nav? 'opacity-100 pointer-events-auto':'opacity-0 pointer-events-none'} md:hidden fixed inset-0 flex flex-col items-center justify-center gap-6 bg-[#0a192fe6] backdrop-blur-xl transition-opacity duration-300`}>        
+        {['home','about','skills','work','contact'].map(item => (
+          <li key={item} className="py-2">
+            <Link onClick={() => {handleclick(); setActive(item);}} to={item} smooth={true} duration={400} className={`text-3xl font-semibold tracking-wide nav-link ${active===item? 'nav-link-active':''}`}>{item.charAt(0).toUpperCase()+item.slice(1)}</Link>
+          </li>
+        ))}
       </ul>
 
       {/* Social Icons */}
-      <div className="hidden lg:flex fixed flex-col top-[35%] left-0">
+      <div className="hidden lg:flex fixed flex-col top-[40%] left-0 space-y-2">
         <ul>
-          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-blue-600">
-            <a
-              className="flex justify-between items-center w-full text-gray-300"
-              href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
-            >
-              LinkedIn <FaLinkedin size={30} />
+          <li className="group ml-[-108px] hover:ml-0 duration-300">
+            <a className="w-[190px] h-[56px] glass flex justify-between items-center pl-6 pr-4 rounded-r-xl text-sm tracking-wide" href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile">
+              <span className="font-semibold">LinkedIn</span> <FaLinkedin size={26} className="text-blue-400 group-hover:scale-110 transition" />
             </a>
           </li>
-          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#333333]">
-            <a
-              className="flex justify-between items-center w-full text-gray-300"
-              href="https://github.com/Armond-Guze"
-            >
-              Github <FaGithubSquare size={30} />
+          <li className="group ml-[-108px] hover:ml-0 duration-300">
+            <a className="w-[190px] h-[56px] glass flex justify-between items-center pl-6 pr-4 rounded-r-xl text-sm tracking-wide" href="https://github.com/Armond-Guze">
+              <span className="font-semibold">Github</span> <FaGithubSquare size={26} className="group-hover:scale-110 transition" />
             </a>
           </li>
-          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#6fc2b0]">
-            <a
-              className="flex justify-between items-center w-full text-gray-300"
-              href="mailto:Armond.Guze@yahoo.com"
-            >
-              Email <MdEmail size={30} />
+          <li className="group ml-[-108px] hover:ml-0 duration-300">
+            <a className="w-[190px] h-[56px] glass flex justify-between items-center pl-6 pr-4 rounded-r-xl text-sm tracking-wide" href="mailto:Armond.Guze@yahoo.com">
+              <span className="font-semibold">Email</span> <MdEmail size={26} className="text-pink-400 group-hover:scale-110 transition" />
             </a>
           </li>
-          <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#808080]">
-            <a
-              className="flex justify-between items-center w-full text-gray-300"
-              href="https://docs.google.com/document/d/1tgYVRB7swfTPKuoLqYufvSWtrJVgrI3X/edit"
-            >
-              Resume <FaBook size={30} />
+          <li className="group ml-[-108px] hover:ml-0 duration-300">
+            <a className="w-[190px] h-[56px] glass flex justify-between items-center pl-6 pr-4 rounded-r-xl text-sm tracking-wide" href="https://docs.google.com/document/d/1tgYVRB7swfTPKuoLqYufvSWtrJVgrI3X/edit">
+              <span className="font-semibold">Resume</span> <FaBook size={24} className="text-indigo-300 group-hover:scale-110 transition" />
             </a>
           </li>
         </ul>
