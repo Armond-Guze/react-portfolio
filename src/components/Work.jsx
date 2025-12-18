@@ -1,7 +1,7 @@
 import React from "react";
-import WorkImg from "../assets/workImg.jpeg";
 import Frontend from "../assets/frontend.png";
 import SnapImg from "../assets/Untitled.png";
+import CarhubImg from "../assets/dzrgh.png";
 
 const projects = [
   // SNAP first
@@ -15,7 +15,7 @@ const projects = [
   // Carhub second
   {
     title: "Carhub",
-    img: WorkImg,
+    img: CarhubImg,
     demo: "https://hub4cars.netlify.app/",
     code: "https://github.com/Armond-Guze/carhub",
     tags: ["Next.js","API","UI"],
