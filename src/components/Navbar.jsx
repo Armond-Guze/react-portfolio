@@ -5,6 +5,7 @@ import { MdCancel } from "react-icons/md";
 import { FaLinkedin, FaGithubSquare, FaBook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-scroll";
+import ResumePdf from "../assets/RESUME2025.pdf";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [active, setActive] = useState("home");
@@ -80,7 +81,7 @@ const Navbar = () => {
             </a>
           </li>
           <li className="group ml-[-108px] hover:ml-0 duration-300">
-            <a className="w-[190px] h-[56px] glass flex justify-between items-center pl-6 pr-4 rounded-r-xl text-sm tracking-wide" href="https://docs.google.com/document/d/1tgYVRB7swfTPKuoLqYufvSWtrJVgrI3X/edit">
+            <a className="w-[190px] h-[56px] glass flex justify-between items-center pl-6 pr-4 rounded-r-xl text-sm tracking-wide" href={ResumePdf} target="_blank" rel="noreferrer">
               <span className="font-semibold">Resume</span> <FaBook size={24} className="text-indigo-300 group-hover:scale-110 transition" />
             </a>
           </li>
